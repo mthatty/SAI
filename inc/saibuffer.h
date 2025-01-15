@@ -410,6 +410,25 @@ typedef enum _sai_buffer_pool_attr_t
     SAI_BUFFER_POOL_ATTR_SELECTIVE_COUNTER_LIST,
 
     /**
+     * @brief Reserved buffer pool size in bytes that cannot be used
+     * by other pools in the cases where cumulative buffer pool sizes
+     * exceed SAI_SWITCH_ATTR_TOTAL_BUFFER_SIZE.
+     *
+     * If pool RESERVED_BUFFER_SIZE is 0, pool reserve is equal to the
+     * cumulative RESERVED_BUFFER_SIZE across all queues or ingress
+     * priority groups attached to this pool.
+     *
+     * Reserved pool size is included in the corresponding
+     * buffer pool size SAI_BUFFER_POOL_ATTR_SIZE.
+     * Therefore reserved_buffer_size <= (pool_size - shared_headroom_size)
+     *
+     * @type sai_uint64_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_BUFFER_POOL_ATTR_RESERVED_BUFFER_SIZE,
+
+    /**
      * @brief End of attributes
      */
     SAI_BUFFER_POOL_ATTR_END,
